@@ -1,6 +1,4 @@
-import { makeStyles } from "@material-ui/core/styles";
-
-export const useStyles = makeStyles((theme) => ({
+export const style = (theme) => ({
   headerRow: {
     backgroundColor: theme.palette.primary.dark,
   },
@@ -10,5 +8,8 @@ export const useStyles = makeStyles((theme) => ({
   },
   actionButton: {
     marginInline: theme.spacing(1),
+    "&:last-child": {
+      marginRight: 0,
+    },
   },
-}));
+});
