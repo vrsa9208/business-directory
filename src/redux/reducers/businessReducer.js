@@ -1,4 +1,9 @@
-import { RESET } from "../actions/actionTypes";
+import {
+  RESET,
+  SET_BUSINESS_DATA,
+  SET_BUSINESS_IS_LOADING,
+  SET_BUSINESS_ERROR,
+} from "../actions/actionTypes";
 
 const initialState = {
   data: [],
@@ -8,6 +13,10 @@ const initialState = {
 
 const reducer = (state = initialState, { type, payload }) => {
   switch (type) {
+    case SET_BUSINESS_DATA:
+    case SET_BUSINESS_IS_LOADING:
+    case SET_BUSINESS_ERROR:
+      return { ...state, ...payload };
     case RESET:
       return initialState;
     default:

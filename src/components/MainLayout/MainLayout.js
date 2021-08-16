@@ -1,5 +1,5 @@
 import React from "react";
-import useStyles from "./MainLayout.style";
+import { useStyles } from "./MainLayout.style";
 import TopBar from "../TopBar/TopBar";
 import Container from "@material-ui/core/Container";
 

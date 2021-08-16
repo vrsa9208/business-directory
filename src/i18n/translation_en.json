@@ -1,5 +1,11 @@
 {
   "topBar": {
     "title": "Business directory"
+  },
+  "businessTable": {
+    "business": "Business",
+    "actions": "Actions",
+    "edit": "Edit",
+    "delete": "Delete"
   }
 }

@@ -1,7 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
+import { fetchBusiness } from "../../redux/actions/businessActions";
+import BusinessTable from "../../components/BusinessTable/BusinessTable";
 
-const BusinessList = () => {
-  return <div>Business List View</div>;
+const BusinessList = ({ business, fetchBusiness }) => {
+  useEffect(() => {
+    fetchBusiness();
+  }, [fetchBusiness]);
+
+  return (
+    <>
+      <BusinessTable data={business} />
+    </>
+  );
 };
 
-export default BusinessList;
+const mapStateToProps = (state) => ({
+  business: state.business.data,
+});
+
+const mapDispatchToProps = {
+  fetchBusiness,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(BusinessList);
