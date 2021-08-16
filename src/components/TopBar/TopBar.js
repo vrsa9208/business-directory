@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import useStyles from "./TopBar.style";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -8,6 +9,7 @@ import BusinessIcon from "@material-ui/icons/Business";
 
 const TopBar = () => {
   const classes = useStyles();
+  const { t } = useTranslation();
 
   return (
     <AppBar position="static">
@@ -21,7 +23,7 @@ const TopBar = () => {
           <BusinessIcon />
         </IconButton>
         <Typography variant="h6" className={classes.title}>
-          Business Directory
+          {t("topBar.title")}
         </Typography>
       </Toolbar>
     </AppBar>
