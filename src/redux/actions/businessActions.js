@@ -31,3 +31,27 @@ export const fetchBusiness = () => (dispatch) => {
     .catch(setBusinessError)
     .then(() => dispatch(setBusinessIsLoading(false)));
 };
+
+export const createBusiness = (name) => (dispatch) => {
+  dispatch(setBusinessIsLoading(true));
+
+  getServerClient()
+    .post("/business", { name })
+    .then(() => {
+      dispatch(fetchBusiness());
+    })
+    .catch(setBusinessError)
+    .then(() => dispatch(setBusinessIsLoading(false)));
+};
+
+export const deleteBusiness = (businessId) => (dispatch) => {
+  dispatch(setBusinessIsLoading(true));
+
+  getServerClient()
+    .delete(`/business/${businessId}`)
+    .then(() => {
+      dispatch(fetchBusiness());
+    })
+    .catch(setBusinessError)
+    .then(() => dispatch(setBusinessIsLoading(false)));
+};

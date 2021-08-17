@@ -7,12 +7,28 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 
-const BusinessUpdateDialog = ({ open, onCancel, onOk, title, ...props }) => {
+const BusinessUpdateDialog = ({
+  open,
+  onCancel,
+  onSubmit,
+  title,
+  ...props
+}) => {
   const { t } = useTranslation();
   const [name, setName] = useState(props.name || "");
 
   const handleNameChange = (event) => {
     setName(event.target.value);
+  };
+
+  const handleOnOkButtonClick = () => {
+    setName("");
+    onSubmit(name);
+  };
+
+  const handleOnCancelButtonClick = () => {
+    setName("");
+    onCancel();
   };
 
   return (
@@ -31,10 +47,10 @@ const BusinessUpdateDialog = ({ open, onCancel, onOk, title, ...props }) => {
         />
       </DialogContent>
       <DialogActions>
-        <Button onClick={onCancel} color="primary">
+        <Button onClick={handleOnCancelButtonClick} color="primary">
           {t("commons.cancel")}
         </Button>
-        <Button onClick={onOk} color="primary">
+        <Button onClick={handleOnOkButtonClick} color="primary">
           {t("commons.ok")}
         </Button>
       </DialogActions>

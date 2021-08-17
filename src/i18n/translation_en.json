@@ -2,11 +2,18 @@
   "topBar": {
     "title": "Business directory"
   },
+  "businessList": {
+    "create": "Create Business"
+  },
   "businessTable": {
     "business": "Business",
     "actions": "Actions",
     "edit": "Edit",
     "delete": "Delete"
+  },
+  "businessTableActions": {
+    "search": "Search",
+    "create": "Create business"
   },
   "businessUpdateDialog": {
     "name": "Name"
