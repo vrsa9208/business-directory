@@ -13,7 +13,7 @@ import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles(style);
 
-const BusinessTableRow = ({ row }) => {
+const BusinessTableRow = ({ row, onDeleteButtonClick }) => {
   const classes = useStyles();
   const { t } = useTranslation();
 
@@ -27,6 +27,7 @@ const BusinessTableRow = ({ row }) => {
           {t("businessTable.edit")}
         </Button>
         <Button
+          onClick={() => onDeleteButtonClick(row.businessId)}
           variant="contained"
           className={classes.actionButton}
           color="secondary"
@@ -38,7 +39,7 @@ const BusinessTableRow = ({ row }) => {
   );
 };
 
-const BusinessTable = ({ data }) => {
+const BusinessTable = ({ data, onDeleteButtonClick }) => {
   const classes = useStyles();
   const { t } = useTranslation();
 
@@ -57,7 +58,11 @@ const BusinessTable = ({ data }) => {
         </TableHead>
         <TableBody>
           {data.map((row) => (
-            <BusinessTableRow key={row.businessId} row={row} />
+            <BusinessTableRow
+              key={row.businessId}
+              row={row}
+              onDeleteButtonClick={onDeleteButtonClick}
+            />
           ))}
         </TableBody>
       </Table>

@@ -4,12 +4,18 @@ import { connect } from "react-redux";
 import {
   fetchBusiness,
   createBusiness,
+  deleteBusiness,
 } from "../../redux/actions/businessActions";
 import BusinessTable from "../../components/BusinessTable/BusinessTable";
 import BusinessUpdateDialog from "../../components/BusinessUpdateDialog/BusinessUpdateDialog";
 import BusinessTableActions from "../../components/BusinessTableActions/BusinessTableActions";
 
-const BusinessList = ({ business, fetchBusiness, createBusiness }) => {
+const BusinessList = ({
+  business,
+  fetchBusiness,
+  createBusiness,
+  deleteBusiness,
+}) => {
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -39,8 +45,6 @@ const BusinessList = ({ business, fetchBusiness, createBusiness }) => {
     createBusiness(name);
   };
 
-  const startBusinessDeletion = (businessId) => {};
-
   const closeDialog = () => {
     setDialogOptions({ open: false });
   };
@@ -56,7 +60,10 @@ const BusinessList = ({ business, fetchBusiness, createBusiness }) => {
         onSearchFilterChange={handleSearchFilterChange}
         onCreateBusinessButtonClick={handleCreatBusinessButtonClick}
       />
-      <BusinessTable data={filteredBusiness} />
+      <BusinessTable
+        data={filteredBusiness}
+        onDeleteButtonClick={deleteBusiness}
+      />
     </>
   );
 };
@@ -68,6 +75,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
   fetchBusiness,
   createBusiness,
+  deleteBusiness,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(BusinessList);
