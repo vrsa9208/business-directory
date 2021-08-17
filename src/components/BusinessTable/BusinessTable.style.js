@@ -3,7 +3,7 @@ export const style = (theme) => ({
     backgroundColor: theme.palette.primary.dark,
   },
   headerCell: {
-    color: "white",
+    color: theme.palette.common.white,
     fontWeight: "bold",
   },
   actionButton: {
