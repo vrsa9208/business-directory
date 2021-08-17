@@ -49,5 +49,5 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {}
+  "proxy": "https://us4b9c5vv0.execute-api.us-east-1.amazonaws.com/prod"
 }

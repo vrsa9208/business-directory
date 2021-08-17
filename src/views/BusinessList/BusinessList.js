@@ -6,8 +6,7 @@ import BusinessUpdateDialog from "../../components/BusinessUpdateDialog/Business
 
 const BusinessList = ({ business, fetchBusiness }) => {
   useEffect(() => {
-    console.log("process.env", process.env);
-    //fetchBusiness();
+    fetchBusiness();
   }, [fetchBusiness]);
 
   return (

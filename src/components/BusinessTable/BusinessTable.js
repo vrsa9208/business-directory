@@ -57,7 +57,7 @@ const BusinessTable = ({ data }) => {
         </TableHead>
         <TableBody>
           {data.map((row) => (
-            <BusinessTableRow key={row.id} row={row} />
+            <BusinessTableRow key={row.businessId} row={row} />
           ))}
         </TableBody>
       </Table>

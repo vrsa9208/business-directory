@@ -26,7 +26,8 @@ export const fetchBusiness = () => (dispatch) => {
   getServerClient()
     .get("/business")
     .then((response) => {
-      dispatch(setBusinessData(response.data));
+      dispatch(setBusinessData(response.data.businesses));
     })
-    .catch(setBusinessError);
+    .catch(setBusinessError)
+    .then(() => dispatch(setBusinessIsLoading(false)));
 };
