@@ -1,12 +1,44 @@
-import React from "react";
-import Modal from "@material-ui/core/Modal";
-import Paper from "@material-ui/core/Paper";
+import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
+import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogTitle from "@material-ui/core/DialogTitle";
 
-const BusinessUpdateDialog = ({ open }) => {
+const BusinessUpdateDialog = ({ open, onCancel, onOk, title, ...props }) => {
+  const { t } = useTranslation();
+  const [name, setName] = useState(props.name || "");
+
+  const handleNameChange = (event) => {
+    setName(event.target.value);
+  };
+
   return (
-    <Modal open={open}>
-      <Paper elevation={3}>Hello World</Paper>
-    </Modal>
+    <Dialog open={open} maxWidth="xs" fullWidth>
+      <DialogTitle id="form-dialog-title">{title}</DialogTitle>
+      <DialogContent>
+        <TextField
+          onChange={handleNameChange}
+          autoFocus
+          margin="dense"
+          id="name"
+          label={t("businessUpdateDialog.name")}
+          type="text"
+          fullWidth
+          value={name}
+        />
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={onCancel} color="primary">
+          {t("commons.cancel")}
+        </Button>
+        <Button onClick={onOk} color="primary">
+          {t("commons.ok")}
+        </Button>
+      </DialogActions>
+    </Dialog>
   );
 };
 

@@ -11,7 +11,7 @@ const BusinessList = ({ business, fetchBusiness }) => {
 
   return (
     <>
-      <BusinessUpdateDialog open={false} />
+      <BusinessUpdateDialog open={true} title="Create Business" />
       <BusinessTable data={business} />
     </>
   );

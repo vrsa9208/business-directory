@@ -7,5 +7,12 @@
     "actions": "Actions",
     "edit": "Edit",
     "delete": "Delete"
+  },
+  "businessUpdateDialog": {
+    "name": "Name"
+  },
+  "commons": {
+    "ok": "Ok",
+    "cancel": "Cancel"
   }
 }
