@@ -19,6 +19,7 @@
     "create": "Create Person",
     "delete": "Delete Person",
     "edit": "Edit Person",
+    "details": "Person Details",
     "deleteDescription": "This action will delete the person permanently"
   },
   "personsTable": {

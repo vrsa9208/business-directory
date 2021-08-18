@@ -91,12 +91,16 @@ const PersonUpdateDialog = ({
         />
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleOnCancelButtonClick} color="primary">
-          {t("commons.cancel")}
-        </Button>
-        <Button onClick={handleOnOkButtonClick} color="primary">
-          {t("commons.ok")}
-        </Button>
+        {onCancel && (
+          <Button onClick={handleOnCancelButtonClick} color="primary">
+            {t("commons.cancel")}
+          </Button>
+        )}
+        {onSubmit && (
+          <Button onClick={handleOnOkButtonClick} color="primary">
+            {t("commons.ok")}
+          </Button>
+        )}
       </DialogActions>
     </Dialog>
   );

@@ -59,7 +59,6 @@ export const deletePerson = (businessId, personId) => (dispatch) => {
 
 export const editPerson = (businessId, person, personId) => (dispatch) => {
   dispatch(setPersonsIsLoading(true));
-  console.log("mapPersonRequest(person) :>> ", mapPersonRequest(person));
 
   getServerClient()
     .put(

@@ -29,7 +29,7 @@ const PersonsTableRow = ({
         <Link
           color="primary"
           className={classes.nameButton}
-          onClick={onNameButtonClick}
+          onClick={() => onNameButtonClick(row)}
         >
           {row.name}
         </Link>
@@ -58,7 +58,12 @@ const PersonsTableRow = ({
   );
 };
 
-const PersonsTable = ({ data, onDeleteButtonClick, onEditButtonClick }) => {
+const PersonsTable = ({
+  data,
+  onDeleteButtonClick,
+  onEditButtonClick,
+  onNameButtonClick,
+}) => {
   const classes = useStyles();
   const { t } = useTranslation();
 
@@ -85,6 +90,7 @@ const PersonsTable = ({ data, onDeleteButtonClick, onEditButtonClick }) => {
               row={row}
               onDeleteButtonClick={onDeleteButtonClick}
               onEditButtonClick={onEditButtonClick}
+              onNameButtonClick={onNameButtonClick}
             />
           ))}
         </TableBody>

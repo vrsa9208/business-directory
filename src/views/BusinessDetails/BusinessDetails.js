@@ -77,6 +77,15 @@ const BusinessDetails = ({
     });
   };
 
+  const handleNameButtonClick = (person) => {
+    setUpdateDialogOptions({
+      ...mapPersonModel(person),
+      open: true,
+      title: t("businessDetails.details"),
+      onSubmit: closeUpdateDialog,
+    });
+  };
+
   const startPersonEdit = (person, personId) => {
     closeUpdateDialog();
     editPerson(selectedBusiness.businessId, person, personId);
@@ -121,6 +130,7 @@ const BusinessDetails = ({
         data={filteredPersons}
         onDeleteButtonClick={handleDeleteButtonClick}
         onEditButtonClick={handleEditButtonClick}
+        onNameButtonClick={handleNameButtonClick}
       />
     </>
   );
