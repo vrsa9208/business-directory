@@ -9,6 +9,7 @@ import {
 import BusinessTable from "../../components/BusinessTable/BusinessTable";
 import BusinessUpdateDialog from "../../components/BusinessUpdateDialog/BusinessUpdateDialog";
 import BusinessTableActions from "../../components/BusinessTableActions/BusinessTableActions";
+import ConfirmationDialog from "../../components/ConfirmationDialog/ConfirmationDialog";
 
 const BusinessList = ({
   business,
@@ -23,7 +24,10 @@ const BusinessList = ({
   }, [fetchBusiness]);
 
   const [searchFilter, setSearchFilter] = useState("");
-  const [dialogOptions, setDialogOptions] = useState({
+  const [updateDialogOptions, setUpdateDialogOptions] = useState({
+    open: false,
+  });
+  const [confirmationDialogOptions, setConfirmationDialogOptions] = useState({
     open: false,
   });
 
@@ -32,21 +36,38 @@ const BusinessList = ({
   };
 
   const handleCreatBusinessButtonClick = () => {
-    setDialogOptions({
+    setUpdateDialogOptions({
       open: true,
       title: t("businessList.create"),
-      onCancel: closeDialog,
+      onCancel: closeUpdateDialog,
       onSubmit: startBusinessCreation,
     });
   };
 
+  const handleDeleteButtonClick = (businessId) => {
+    setConfirmationDialogOptions({
+      open: true,
+      title: t("businessList.delete"),
+      description: t("businessList.deleteDescription"),
+      onCancel: closeConfirmationDialog,
+      onSubmit: () => {
+        closeConfirmationDialog();
+        deleteBusiness(businessId);
+      },
+    });
+  };
+
   const startBusinessCreation = (name) => {
-    closeDialog();
+    closeUpdateDialog();
     createBusiness(name);
   };
 
-  const closeDialog = () => {
-    setDialogOptions({ open: false });
+  const closeUpdateDialog = () => {
+    setUpdateDialogOptions({ open: false });
+  };
+
+  const closeConfirmationDialog = () => {
+    setConfirmationDialogOptions({ open: false });
   };
 
   const filteredBusiness = business.filter((b) =>
@@ -55,14 +76,15 @@ const BusinessList = ({
 
   return (
     <>
-      <BusinessUpdateDialog {...dialogOptions} />
+      <ConfirmationDialog {...confirmationDialogOptions} />
+      <BusinessUpdateDialog {...updateDialogOptions} />
       <BusinessTableActions
         onSearchFilterChange={handleSearchFilterChange}
         onCreateBusinessButtonClick={handleCreatBusinessButtonClick}
       />
       <BusinessTable
         data={filteredBusiness}
-        onDeleteButtonClick={deleteBusiness}
+        onDeleteButtonClick={handleDeleteButtonClick}
       />
     </>
   );

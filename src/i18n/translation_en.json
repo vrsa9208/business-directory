@@ -3,7 +3,9 @@
     "title": "Business directory"
   },
   "businessList": {
-    "create": "Create Business"
+    "create": "Create Business",
+    "delete": "Delete Business",
+    "deleteDescription": "This action will delete the business permanently"
   },
   "businessTable": {
     "business": "Business",
