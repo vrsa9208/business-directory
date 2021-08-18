@@ -15,8 +15,11 @@ import PersonUpdateDialog from "../../components/PersonUpdateDialog/PersonUpdate
 import ConfirmationDialog from "../../components/ConfirmationDialog/ConfirmationDialog";
 import { mapPersonModel } from "../../utils/personsUtils";
 import PersonsGrid from "../../components/PersonsGrid/PersonsGrid";
+import LinearProgress from "@material-ui/core/LinearProgress";
 
 const BusinessDetails = ({
+  isLoadingBusiness,
+  isLoadingPersons,
   selectedBusiness,
   persons,
   getBusiness,
@@ -123,6 +126,9 @@ const BusinessDetails = ({
 
   return (
     <>
+      {(isLoadingBusiness || isLoadingPersons) && (
+        <LinearProgress color="secondary" />
+      )}
       {confirmationDialogOptions.open && (
         <ConfirmationDialog {...confirmationDialogOptions} />
       )}
@@ -156,6 +162,8 @@ const BusinessDetails = ({
 };
 
 const mapStateToProps = (state) => ({
+  isLoadingBusiness: state.business.isLoading,
+  isLoadingPersons: state.persons.isLoading,
   selectedBusiness: state.business.selected,
   persons: state.persons.data,
 });

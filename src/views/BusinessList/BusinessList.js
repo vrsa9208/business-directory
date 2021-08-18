@@ -11,8 +11,10 @@ import BusinessTable from "../../components/BusinessTable/BusinessTable";
 import BusinessUpdateDialog from "../../components/BusinessUpdateDialog/BusinessUpdateDialog";
 import BusinessActions from "../../components/BusinessActions/BusinessActions";
 import ConfirmationDialog from "../../components/ConfirmationDialog/ConfirmationDialog";
+import LinearProgress from "@material-ui/core/LinearProgress";
 
 const BusinessList = ({
+  isLoadingBusiness,
   business,
   fetchBusiness,
   createBusiness,
@@ -95,6 +97,7 @@ const BusinessList = ({
 
   return (
     <>
+      {isLoadingBusiness && <LinearProgress color="secondary" />}
       {confirmationDialogOptions.open && (
         <ConfirmationDialog {...confirmationDialogOptions} />
       )}
@@ -116,6 +119,7 @@ const BusinessList = ({
 
 const mapStateToProps = (state) => ({
   business: state.business.data,
+  isLoadingBusiness: state.business.isLoading,
 });
 
 const mapDispatchToProps = {
