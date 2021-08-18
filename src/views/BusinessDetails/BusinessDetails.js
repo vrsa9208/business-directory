@@ -29,7 +29,7 @@ const BusinessDetails = ({
   const { t } = useTranslation();
 
   const [searchFilter, setSearchFilter] = useState("");
-  const [displayType, setDisplayType] = useState("grid");
+  const [displayType, setDisplayType] = useState("table");
   const [updateDialogOptions, setUpdateDialogOptions] = useState({
     open: false,
   });
