@@ -2,6 +2,7 @@ import {
   SET_BUSINESS_DATA,
   SET_BUSINESS_IS_LOADING,
   SET_BUSINESS_ERROR,
+  SET_BUSINESS_SELECTED,
 } from "./actionTypes";
 import { getServerClient } from "../../utils/networkUtils";
 
@@ -20,6 +21,11 @@ export const setBusinessError = (error) => ({
   payload: { error },
 });
 
+export const setBusinessSelected = (selected) => ({
+  type: SET_BUSINESS_SELECTED,
+  payload: { selected },
+});
+
 export const fetchBusiness = () => (dispatch) => {
   dispatch(setBusinessIsLoading(true));
 
@@ -28,7 +34,7 @@ export const fetchBusiness = () => (dispatch) => {
     .then((response) => {
       dispatch(setBusinessData(response.data.businesses));
     })
-    .catch(setBusinessError)
+    .catch((error) => dispatch(setBusinessError))
     .then(() => dispatch(setBusinessIsLoading(false)));
 };
 
@@ -40,7 +46,7 @@ export const createBusiness = (name) => (dispatch) => {
     .then(() => {
       dispatch(fetchBusiness());
     })
-    .catch(setBusinessError)
+    .catch((error) => dispatch(setBusinessError))
     .then(() => dispatch(setBusinessIsLoading(false)));
 };
 
@@ -52,7 +58,7 @@ export const deleteBusiness = (businessId) => (dispatch) => {
     .then(() => {
       dispatch(fetchBusiness());
     })
-    .catch(setBusinessError)
+    .catch((error) => dispatch(setBusinessError))
     .then(() => dispatch(setBusinessIsLoading(false)));
 };
 
@@ -64,6 +70,21 @@ export const editBusiness = (name, businessId) => (dispatch) => {
     .then(() => {
       dispatch(fetchBusiness());
     })
-    .catch(setBusinessError)
+    .catch((error) => dispatch(setBusinessError))
+    .then(() => dispatch(setBusinessIsLoading(false)));
+};
+
+export const getBusiness = (businessId) => (dispatch) => {
+  dispatch(setBusinessIsLoading(true));
+
+  getServerClient()
+    .get(`/business/${businessId}`)
+    .then((response) => {
+      dispatch(setBusinessSelected(response.data));
+    })
+    .catch((error) => {
+      dispatch(setBusinessSelected(null));
+      dispatch(setBusinessError(error));
+    })
     .then(() => dispatch(setBusinessIsLoading(false)));
 };
