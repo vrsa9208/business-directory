@@ -4,5 +4,6 @@ export const style = (theme) => ({
   },
   title: {
     flexGrow: 1,
+    color: theme.palette.common.white,
   },
 });

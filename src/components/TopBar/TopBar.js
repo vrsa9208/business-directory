@@ -6,6 +6,7 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
+import Link from "@material-ui/core/Link";
 import BusinessIcon from "@material-ui/icons/Business";
 
 const useStyles = makeStyles(style);
@@ -25,9 +26,11 @@ const TopBar = () => {
         >
           <BusinessIcon />
         </IconButton>
-        <Typography variant="h6" className={classes.title}>
-          {t("topBar.title")}
-        </Typography>
+        <Link href="#">
+          <Typography variant="h6" className={classes.title}>
+            {t("topBar.title")}
+          </Typography>
+        </Link>
       </Toolbar>
     </AppBar>
   );

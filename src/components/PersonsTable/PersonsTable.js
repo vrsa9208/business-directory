@@ -1,6 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { style } from "./BusinessTable.style";
+import { style } from "./PersonsTable.style";
 import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -10,18 +10,22 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
-import Link from "@material-ui/core/Link";
 
 const useStyles = makeStyles(style);
 
-const BusinessTableRow = ({ row, onDeleteButtonClick, onEditButtonClick }) => {
+const PersonsTableRow = ({ row, onDeleteButtonClick, onEditButtonClick }) => {
   const classes = useStyles();
   const { t } = useTranslation();
 
   return (
     <TableRow>
       <TableCell component="th" scope="row">
-        <Link href={`#/business/${row.businessId}`}>{row.name}</Link>
+        <Button color="primary" variant="text" className={classes.nameButton}>
+          {row.name}
+        </Button>
+      </TableCell>
+      <TableCell component="th" scope="row">
+        {row.role}
       </TableCell>
       <TableCell align="right">
         <Button
@@ -32,7 +36,7 @@ const BusinessTableRow = ({ row, onDeleteButtonClick, onEditButtonClick }) => {
           {t("commons.edit")}
         </Button>
         <Button
-          onClick={() => onDeleteButtonClick(row.businessId)}
+          onClick={() => onDeleteButtonClick(row)}
           variant="contained"
           className={classes.actionButton}
           color="secondary"
@@ -44,7 +48,7 @@ const BusinessTableRow = ({ row, onDeleteButtonClick, onEditButtonClick }) => {
   );
 };
 
-const BusinessTable = ({ data, onDeleteButtonClick, onEditButtonClick }) => {
+const PersonsTable = ({ data, onDeleteButtonClick, onEditButtonClick }) => {
   const classes = useStyles();
   const { t } = useTranslation();
 
@@ -54,17 +58,20 @@ const BusinessTable = ({ data, onDeleteButtonClick, onEditButtonClick }) => {
         <TableHead>
           <TableRow className={classes.headerRow}>
             <TableCell className={classes.headerCell}>
-              {t("businessTable.name")}
+              {t("personsTable.name")}
+            </TableCell>
+            <TableCell className={classes.headerCell}>
+              {t("personsTable.role")}
             </TableCell>
             <TableCell className={classes.headerCell} align="right">
-              {t("businessTable.actions")}
+              {t("personsTable.actions")}
             </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {data.map((row) => (
-            <BusinessTableRow
-              key={row.businessId}
+            <PersonsTableRow
+              key={row.personId}
               row={row}
               onDeleteButtonClick={onDeleteButtonClick}
               onEditButtonClick={onEditButtonClick}
@@ -76,4 +83,4 @@ const BusinessTable = ({ data, onDeleteButtonClick, onEditButtonClick }) => {
   );
 };
 
-export default BusinessTable;
+export default PersonsTable;

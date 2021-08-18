@@ -9,10 +9,8 @@
     "deleteDescription": "This action will delete the business permanently"
   },
   "businessTable": {
-    "business": "Business",
-    "actions": "Actions",
-    "edit": "Edit",
-    "delete": "Delete"
+    "name": "Business",
+    "actions": "Actions"
   },
   "businessTableActions": {
     "search": "Search",
@@ -21,8 +19,15 @@
   "businessUpdateDialog": {
     "name": "Name"
   },
+  "personsTable": {
+    "name": "Name",
+    "role": "Role",
+    "actions": "Actions"
+  },
   "commons": {
     "ok": "Ok",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "edit": "Edit",
+    "delete": "Delete"
   }
 }
