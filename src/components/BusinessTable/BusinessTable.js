@@ -10,6 +10,7 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
+import Link from "@material-ui/core/Link";
 
 const useStyles = makeStyles(style);
 
@@ -20,7 +21,7 @@ const BusinessTableRow = ({ row, onDeleteButtonClick, onEditButtonClick }) => {
   return (
     <TableRow>
       <TableCell component="th" scope="row">
-        {row.name}
+        <Link href={`#/business/${row.businessId}`}>{row.name}</Link>
       </TableCell>
       <TableCell align="right">
         <Button
