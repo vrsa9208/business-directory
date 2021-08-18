@@ -12,9 +12,6 @@
     "name": "Business",
     "actions": "Actions"
   },
-  "businessTableActions": {
-    "create": "Create business"
-  },
   "businessUpdateDialog": {
     "name": "Name"
   },
@@ -24,7 +21,6 @@
     "actions": "Actions"
   },
   "personsTableActions": {
-    "create": "Create person",
     "business": "Business"
   },
   "personUpdateDialog": {
@@ -39,6 +35,7 @@
     "cancel": "Cancel",
     "edit": "Edit",
     "delete": "Delete",
-    "search": "Search"
+    "search": "Search",
+    "create": "Create"
   }
 }

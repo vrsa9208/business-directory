@@ -41,7 +41,7 @@ const PersonsTableActions = ({
       />
       <Divider orientation="vertical" className={classes.divider} />
       <Button onClick={onCreateButtonClick} color="secondary">
-        {t("personsTableActions.create")}
+        {t("commons.create")}
       </Button>
     </Grid>
   );

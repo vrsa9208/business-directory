@@ -7,5 +7,6 @@ export const style = (theme) => ({
   },
   breadcrumbs: {
     flexGrow: "1",
+    display: "flex",
   },
 });

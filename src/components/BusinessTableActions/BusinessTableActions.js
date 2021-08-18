@@ -31,7 +31,7 @@ const BusinessTableActions = ({
       />
       <Divider orientation="vertical" className={classes.divider} />
       <Button onClick={onCreateButtonClick} color="secondary">
-        {t("businessTableActions.create")}
+        {t("commons.create")}
       </Button>
     </Grid>
   );
