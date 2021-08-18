@@ -1,5 +1,5 @@
 import React from "react";
-import { style } from "./BusinessTableActions.style";
+import { style } from "./BusinessActions.style";
 import { makeStyles } from "@material-ui/core/styles";
 import { useTranslation } from "react-i18next";
 import Grid from "@material-ui/core/Grid";
@@ -9,10 +9,7 @@ import Divider from "@material-ui/core/Divider";
 
 const useStyles = makeStyles(style);
 
-const BusinessTableActions = ({
-  onSearchFilterChange,
-  onCreateButtonClick,
-}) => {
+const BusinessActions = ({ onSearchFilterChange, onCreateButtonClick }) => {
   const classes = useStyles();
   const { t } = useTranslation();
 
@@ -37,4 +34,4 @@ const BusinessTableActions = ({
   );
 };
 
-export default BusinessTableActions;
+export default BusinessActions;

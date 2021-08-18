@@ -9,7 +9,7 @@ import {
 } from "../../redux/actions/businessActions";
 import BusinessTable from "../../components/BusinessTable/BusinessTable";
 import BusinessUpdateDialog from "../../components/BusinessUpdateDialog/BusinessUpdateDialog";
-import BusinessTableActions from "../../components/BusinessTableActions/BusinessTableActions";
+import BusinessActions from "../../components/BusinessActions/BusinessActions";
 import ConfirmationDialog from "../../components/ConfirmationDialog/ConfirmationDialog";
 
 const BusinessList = ({
@@ -101,7 +101,7 @@ const BusinessList = ({
       {updateDialogOptions.open && (
         <BusinessUpdateDialog {...updateDialogOptions} />
       )}
-      <BusinessTableActions
+      <BusinessActions
         onSearchFilterChange={handleSearchFilterChange}
         onCreateButtonClick={handleCreateButtonClick}
       />
