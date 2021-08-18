@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { getBusiness } from "../../redux/actions/businessActions";
 import { fetchPersons } from "../../redux/actions/personsActions";
 import PersonsTable from "../../components/PersonsTable/PersonsTable";
+import PersonsTableActions from "../../components/PersonsTableActions/PersonsTableActions";
 
 const BusinessDetails = ({
   selectedBusiness,
@@ -23,6 +24,7 @@ const BusinessDetails = ({
 
   return (
     <>
+      <PersonsTableActions title={selectedBusiness?.name ?? ""} />
       <PersonsTable data={persons} />
     </>
   );

@@ -10,19 +10,29 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
+import Link from "@material-ui/core/Link";
 
 const useStyles = makeStyles(style);
 
-const PersonsTableRow = ({ row, onDeleteButtonClick, onEditButtonClick }) => {
+const PersonsTableRow = ({
+  row,
+  onDeleteButtonClick,
+  onEditButtonClick,
+  onNameButtonClick,
+}) => {
   const classes = useStyles();
   const { t } = useTranslation();
 
   return (
     <TableRow>
       <TableCell component="th" scope="row">
-        <Button color="primary" variant="text" className={classes.nameButton}>
+        <Link
+          color="primary"
+          className={classes.nameButton}
+          onClick={onNameButtonClick}
+        >
           {row.name}
-        </Button>
+        </Link>
       </TableCell>
       <TableCell component="th" scope="row">
         {row.role}

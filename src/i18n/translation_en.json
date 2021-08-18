@@ -13,7 +13,6 @@
     "actions": "Actions"
   },
   "businessTableActions": {
-    "search": "Search",
     "create": "Create business"
   },
   "businessUpdateDialog": {
@@ -24,10 +23,15 @@
     "role": "Role",
     "actions": "Actions"
   },
+  "personsTableActions": {
+    "create": "Create person",
+    "business": "Business"
+  },
   "commons": {
     "ok": "Ok",
     "cancel": "Cancel",
     "edit": "Edit",
-    "delete": "Delete"
+    "delete": "Delete",
+    "search": "Search"
   }
 }
