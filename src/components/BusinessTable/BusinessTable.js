@@ -32,7 +32,7 @@ const BusinessTableRow = ({ row, onDeleteButtonClick, onEditButtonClick }) => {
           {t("commons.edit")}
         </Button>
         <Button
-          onClick={() => onDeleteButtonClick(row.businessId)}
+          onClick={() => onDeleteButtonClick(row)}
           variant="contained"
           className={classes.actionButton}
           color="secondary"

@@ -37,7 +37,7 @@ const BusinessList = ({
     setSearchFilter(filter);
   };
 
-  const handleCreatBusinessButtonClick = () => {
+  const handleCreateButtonClick = () => {
     setUpdateDialogOptions({
       open: true,
       title: t("businessList.create"),
@@ -46,13 +46,13 @@ const BusinessList = ({
     });
   };
 
-  const handleDeleteButtonClick = (businessId) => {
+  const handleDeleteButtonClick = (business) => {
     setConfirmationDialogOptions({
       open: true,
       title: t("businessList.delete"),
       description: t("businessList.deleteDescription"),
       onCancel: closeConfirmationDialog,
-      onSubmit: () => startBusinessDeletion(businessId),
+      onSubmit: () => startBusinessDeletion(business.businessId),
     });
   };
 
@@ -103,7 +103,7 @@ const BusinessList = ({
       )}
       <BusinessTableActions
         onSearchFilterChange={handleSearchFilterChange}
-        onCreateBusinessButtonClick={handleCreatBusinessButtonClick}
+        onCreateButtonClick={handleCreateButtonClick}
       />
       <BusinessTable
         data={filteredBusiness}

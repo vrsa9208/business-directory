@@ -11,7 +11,7 @@ const useStyles = makeStyles(style);
 
 const BusinessTableActions = ({
   onSearchFilterChange,
-  onCreateBusinessButtonClick,
+  onCreateButtonClick,
 }) => {
   const classes = useStyles();
   const { t } = useTranslation();
@@ -30,7 +30,7 @@ const BusinessTableActions = ({
         type="text"
       />
       <Divider orientation="vertical" className={classes.divider} />
-      <Button onClick={onCreateBusinessButtonClick} color="secondary">
+      <Button onClick={onCreateButtonClick} color="secondary">
         {t("businessTableActions.create")}
       </Button>
     </Grid>
