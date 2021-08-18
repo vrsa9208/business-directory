@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
 import { getBusiness } from "../../redux/actions/businessActions";
@@ -13,6 +13,7 @@ const BusinessDetails = ({
   fetchPersons,
 }) => {
   const { businessId } = useParams();
+  const [searchFilter, setSearchFilter] = useState("");
 
   useEffect(() => {
     getBusiness(businessId);
@@ -22,10 +23,21 @@ const BusinessDetails = ({
     if (selectedBusiness !== null) fetchPersons(selectedBusiness.businessId);
   }, [fetchPersons, selectedBusiness]);
 
+  const handleSearchFilterChange = (filter) => {
+    setSearchFilter(filter);
+  };
+
+  const filteredPersons = persons.filter((p) =>
+    p.name.toUpperCase().includes(searchFilter.toUpperCase())
+  );
+
   return (
     <>
-      <PersonsTableActions title={selectedBusiness?.name ?? ""} />
-      <PersonsTable data={persons} />
+      <PersonsTableActions
+        title={selectedBusiness?.name ?? ""}
+        onSearchFilterChange={handleSearchFilterChange}
+      />
+      <PersonsTable data={filteredPersons} />
     </>
   );
 };
