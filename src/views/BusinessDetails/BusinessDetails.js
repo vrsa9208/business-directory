@@ -5,6 +5,7 @@ import { getBusiness } from "../../redux/actions/businessActions";
 import { fetchPersons } from "../../redux/actions/personsActions";
 import PersonsTable from "../../components/PersonsTable/PersonsTable";
 import PersonsTableActions from "../../components/PersonsTableActions/PersonsTableActions";
+import PersonUpdateDialog from "../../components/PersonUpdateDialog/PersonUpdateDialog";
 
 const BusinessDetails = ({
   selectedBusiness,
@@ -14,6 +15,12 @@ const BusinessDetails = ({
 }) => {
   const { businessId } = useParams();
   const [searchFilter, setSearchFilter] = useState("");
+
+  const [updateDialogOptions, setUpdateDialogOptions] = useState({
+    title: "Create Person",
+    open: true,
+    onCancel: () => setUpdateDialogOptions({ open: false }),
+  });
 
   useEffect(() => {
     getBusiness(businessId);
@@ -33,6 +40,9 @@ const BusinessDetails = ({
 
   return (
     <>
+      {updateDialogOptions.open && (
+        <PersonUpdateDialog {...updateDialogOptions} />
+      )}
       <PersonsTableActions
         title={selectedBusiness?.name ?? ""}
         onSearchFilterChange={handleSearchFilterChange}

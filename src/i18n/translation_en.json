@@ -27,6 +27,13 @@
     "create": "Create person",
     "business": "Business"
   },
+  "personUpdateDialog": {
+    "email": "Email",
+    "name": "Name",
+    "phone": "Phone",
+    "role": "Role",
+    "joinDate": "Join date"
+  },
   "commons": {
     "ok": "Ok",
     "cancel": "Cancel",
