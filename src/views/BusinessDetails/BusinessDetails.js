@@ -14,6 +14,7 @@ import PersonsActions from "../../components/PersonsActions/PersonsActions";
 import PersonUpdateDialog from "../../components/PersonUpdateDialog/PersonUpdateDialog";
 import ConfirmationDialog from "../../components/ConfirmationDialog/ConfirmationDialog";
 import { mapPersonModel } from "../../utils/personsUtils";
+import PersonsGrid from "../../components/PersonsGrid/PersonsGrid";
 
 const BusinessDetails = ({
   selectedBusiness,
@@ -28,7 +29,7 @@ const BusinessDetails = ({
   const { t } = useTranslation();
 
   const [searchFilter, setSearchFilter] = useState("");
-  const [displayType, setDisplayType] = useState("table");
+  const [displayType, setDisplayType] = useState("grid");
   const [updateDialogOptions, setUpdateDialogOptions] = useState({
     open: false,
   });
@@ -135,12 +136,21 @@ const BusinessDetails = ({
         onSearchFilterChange={handleSearchFilterChange}
         onCreateButtonClick={handleCreateButtonClick}
       />
-      <PersonsTable
-        data={filteredPersons}
-        onDeleteButtonClick={handleDeleteButtonClick}
-        onEditButtonClick={handleEditButtonClick}
-        onNameButtonClick={handleNameButtonClick}
-      />
+      {displayType === "table" ? (
+        <PersonsTable
+          data={filteredPersons}
+          onDeleteButtonClick={handleDeleteButtonClick}
+          onEditButtonClick={handleEditButtonClick}
+          onNameButtonClick={handleNameButtonClick}
+        />
+      ) : (
+        <PersonsGrid
+          data={filteredPersons}
+          onDeleteButtonClick={handleDeleteButtonClick}
+          onEditButtonClick={handleEditButtonClick}
+          onNameButtonClick={handleNameButtonClick}
+        />
+      )}
     </>
   );
 };
