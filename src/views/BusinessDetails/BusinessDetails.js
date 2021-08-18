@@ -28,6 +28,7 @@ const BusinessDetails = ({
   const { t } = useTranslation();
 
   const [searchFilter, setSearchFilter] = useState("");
+  const [displayType, setDisplayType] = useState("table");
   const [updateDialogOptions, setUpdateDialogOptions] = useState({
     open: false,
   });
@@ -86,6 +87,12 @@ const BusinessDetails = ({
     });
   };
 
+  const handleDisplayTypeButtonClick = () => {
+    setDisplayType((currentType) =>
+      currentType === "table" ? "grid" : "table"
+    );
+  };
+
   const startPersonEdit = (person, personId) => {
     closeUpdateDialog();
     editPerson(selectedBusiness.businessId, person, personId);
@@ -123,6 +130,8 @@ const BusinessDetails = ({
       )}
       <PersonsTableActions
         title={selectedBusiness?.name ?? ""}
+        displayType={displayType}
+        onDisplayTypeButtonClick={handleDisplayTypeButtonClick}
         onSearchFilterChange={handleSearchFilterChange}
         onCreateButtonClick={handleCreateButtonClick}
       />

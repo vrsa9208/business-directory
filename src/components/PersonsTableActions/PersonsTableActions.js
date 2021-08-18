@@ -8,14 +8,19 @@ import TextField from "@material-ui/core/TextField";
 import Divider from "@material-ui/core/Divider";
 import Typography from "@material-ui/core/Typography";
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
+import IconButton from "@material-ui/core/IconButton";
 import Link from "@material-ui/core/Link";
+import GridonIcon from "@material-ui/icons/GridOn";
+import TableChartIcon from "@material-ui/icons/TableChart";
 
 const useStyles = makeStyles(style);
 
 const PersonsTableActions = ({
   title,
+  displayType,
   onSearchFilterChange,
   onCreateButtonClick,
+  onDisplayTypeButtonClick,
 }) => {
   const classes = useStyles();
   const { t } = useTranslation();
@@ -39,6 +44,15 @@ const PersonsTableActions = ({
         label={t("commons.search")}
         type="text"
       />
+      <Divider orientation="vertical" className={classes.divider} />
+      <IconButton
+        onClick={onDisplayTypeButtonClick}
+        color="primary"
+        aria-label="upload picture"
+        component="span"
+      >
+        {displayType === "table" ? <GridonIcon /> : <TableChartIcon />}
+      </IconButton>
       <Divider orientation="vertical" className={classes.divider} />
       <Button onClick={onCreateButtonClick} color="secondary">
         {t("commons.create")}
