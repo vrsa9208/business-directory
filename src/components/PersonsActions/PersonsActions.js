@@ -1,5 +1,5 @@
 import React from "react";
-import { style } from "./PersonsTableActions.style";
+import { style } from "./PersonsActions.style";
 import { makeStyles } from "@material-ui/core/styles";
 import { useTranslation } from "react-i18next";
 import Grid from "@material-ui/core/Grid";
@@ -15,7 +15,7 @@ import TableChartIcon from "@material-ui/icons/TableChart";
 
 const useStyles = makeStyles(style);
 
-const PersonsTableActions = ({
+const PersonsActions = ({
   title,
   displayType,
   onSearchFilterChange,
@@ -43,6 +43,7 @@ const PersonsTableActions = ({
         variant="outlined"
         label={t("commons.search")}
         type="text"
+        className={classes.searchFilter}
       />
       <Divider orientation="vertical" className={classes.divider} />
       <IconButton
@@ -61,4 +62,4 @@ const PersonsTableActions = ({
   );
 };
 
-export default PersonsTableActions;
+export default PersonsActions;

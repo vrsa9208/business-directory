@@ -9,4 +9,7 @@ export const style = (theme) => ({
     flexGrow: "1",
     display: "flex",
   },
+  searchFilter: {
+    marginTop: 5,
+  },
 });

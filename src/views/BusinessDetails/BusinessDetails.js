@@ -10,7 +10,7 @@ import {
 } from "../../redux/actions/personsActions";
 import { useTranslation } from "react-i18next";
 import PersonsTable from "../../components/PersonsTable/PersonsTable";
-import PersonsTableActions from "../../components/PersonsTableActions/PersonsTableActions";
+import PersonsActions from "../../components/PersonsActions/PersonsActions";
 import PersonUpdateDialog from "../../components/PersonUpdateDialog/PersonUpdateDialog";
 import ConfirmationDialog from "../../components/ConfirmationDialog/ConfirmationDialog";
 import { mapPersonModel } from "../../utils/personsUtils";
@@ -128,7 +128,7 @@ const BusinessDetails = ({
       {updateDialogOptions.open && (
         <PersonUpdateDialog {...updateDialogOptions} />
       )}
-      <PersonsTableActions
+      <PersonsActions
         title={selectedBusiness?.name ?? ""}
         displayType={displayType}
         onDisplayTypeButtonClick={handleDisplayTypeButtonClick}
