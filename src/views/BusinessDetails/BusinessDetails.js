@@ -6,12 +6,14 @@ import {
   fetchPersons,
   createPerson,
   deletePerson,
+  editPerson,
 } from "../../redux/actions/personsActions";
 import { useTranslation } from "react-i18next";
 import PersonsTable from "../../components/PersonsTable/PersonsTable";
 import PersonsTableActions from "../../components/PersonsTableActions/PersonsTableActions";
 import PersonUpdateDialog from "../../components/PersonUpdateDialog/PersonUpdateDialog";
 import ConfirmationDialog from "../../components/ConfirmationDialog/ConfirmationDialog";
+import { mapPersonModel } from "../../utils/personsUtils";
 
 const BusinessDetails = ({
   selectedBusiness,
@@ -20,6 +22,7 @@ const BusinessDetails = ({
   fetchPersons,
   createPerson,
   deletePerson,
+  editPerson,
 }) => {
   const { businessId } = useParams();
   const { t } = useTranslation();
@@ -63,6 +66,22 @@ const BusinessDetails = ({
     });
   };
 
+  const handleEditButtonClick = (person) => {
+    setUpdateDialogOptions({
+      ...mapPersonModel(person),
+      open: true,
+      title: t("businessDetails.edit"),
+      onCancel: closeUpdateDialog,
+      onSubmit: (editedPerson) =>
+        startPersonEdit(editedPerson, person.personId),
+    });
+  };
+
+  const startPersonEdit = (person, personId) => {
+    closeUpdateDialog();
+    editPerson(selectedBusiness.businessId, person, personId);
+  };
+
   const startPersonDeletion = (personId) => {
     closeConfirmationDialog();
     deletePerson(selectedBusiness.businessId, personId);
@@ -101,6 +120,7 @@ const BusinessDetails = ({
       <PersonsTable
         data={filteredPersons}
         onDeleteButtonClick={handleDeleteButtonClick}
+        onEditButtonClick={handleEditButtonClick}
       />
     </>
   );
@@ -116,6 +136,7 @@ const mapDispatchToProps = {
   fetchPersons,
   createPerson,
   deletePerson,
+  editPerson,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(BusinessDetails);

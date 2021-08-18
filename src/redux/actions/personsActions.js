@@ -56,3 +56,19 @@ export const deletePerson = (businessId, personId) => (dispatch) => {
     .catch((error) => dispatch(setPersonsError(error)))
     .then(() => dispatch(setPersonsIsLoading(false)));
 };
+
+export const editPerson = (businessId, person, personId) => (dispatch) => {
+  dispatch(setPersonsIsLoading(true));
+  console.log("mapPersonRequest(person) :>> ", mapPersonRequest(person));
+
+  getServerClient()
+    .put(
+      `/business/${businessId}/persons/${personId}`,
+      mapPersonRequest(person)
+    )
+    .then(() => {
+      dispatch(fetchPersons(businessId));
+    })
+    .catch((error) => dispatch(setPersonsError(error)))
+    .then(() => dispatch(setPersonsIsLoading(false)));
+};
