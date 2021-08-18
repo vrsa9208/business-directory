@@ -1,5 +1,5 @@
 export const style = (theme) => ({
   mainContainer: {
-    marginTop: theme.spacing(5),
+    marginTop: theme.spacing(3),
   },
 });

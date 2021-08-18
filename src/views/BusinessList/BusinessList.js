@@ -5,6 +5,7 @@ import {
   fetchBusiness,
   createBusiness,
   deleteBusiness,
+  editBusiness,
 } from "../../redux/actions/businessActions";
 import BusinessTable from "../../components/BusinessTable/BusinessTable";
 import BusinessUpdateDialog from "../../components/BusinessUpdateDialog/BusinessUpdateDialog";
@@ -16,6 +17,7 @@ const BusinessList = ({
   fetchBusiness,
   createBusiness,
   deleteBusiness,
+  editBusiness,
 }) => {
   const { t } = useTranslation();
 
@@ -50,11 +52,28 @@ const BusinessList = ({
       title: t("businessList.delete"),
       description: t("businessList.deleteDescription"),
       onCancel: closeConfirmationDialog,
-      onSubmit: () => {
-        closeConfirmationDialog();
-        deleteBusiness(businessId);
-      },
+      onSubmit: () => startBusinessDeletion(businessId),
     });
+  };
+
+  const handleEditButtonClick = (business) => {
+    setUpdateDialogOptions({
+      open: true,
+      title: t("businessList.edit"),
+      initialName: business.name,
+      onCancel: closeUpdateDialog,
+      onSubmit: (name) => startBusinessEdit(name, business.businessId),
+    });
+  };
+
+  const startBusinessEdit = (name, businessId) => {
+    closeUpdateDialog();
+    editBusiness(name, businessId);
+  };
+
+  const startBusinessDeletion = (businessId) => {
+    closeConfirmationDialog();
+    deleteBusiness(businessId);
   };
 
   const startBusinessCreation = (name) => {
@@ -76,8 +95,12 @@ const BusinessList = ({
 
   return (
     <>
-      <ConfirmationDialog {...confirmationDialogOptions} />
-      <BusinessUpdateDialog {...updateDialogOptions} />
+      {confirmationDialogOptions.open && (
+        <ConfirmationDialog {...confirmationDialogOptions} />
+      )}
+      {updateDialogOptions.open && (
+        <BusinessUpdateDialog {...updateDialogOptions} />
+      )}
       <BusinessTableActions
         onSearchFilterChange={handleSearchFilterChange}
         onCreateBusinessButtonClick={handleCreatBusinessButtonClick}
@@ -85,6 +108,7 @@ const BusinessList = ({
       <BusinessTable
         data={filteredBusiness}
         onDeleteButtonClick={handleDeleteButtonClick}
+        onEditButtonClick={handleEditButtonClick}
       />
     </>
   );
@@ -98,6 +122,7 @@ const mapDispatchToProps = {
   fetchBusiness,
   createBusiness,
   deleteBusiness,
+  editBusiness,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(BusinessList);

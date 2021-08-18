@@ -55,3 +55,15 @@ export const deleteBusiness = (businessId) => (dispatch) => {
     .catch(setBusinessError)
     .then(() => dispatch(setBusinessIsLoading(false)));
 };
+
+export const editBusiness = (name, businessId) => (dispatch) => {
+  dispatch(setBusinessIsLoading(true));
+
+  getServerClient()
+    .put(`/business/${businessId}`, { name })
+    .then(() => {
+      dispatch(fetchBusiness());
+    })
+    .catch(setBusinessError)
+    .then(() => dispatch(setBusinessIsLoading(false)));
+};

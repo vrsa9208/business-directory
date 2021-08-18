@@ -12,10 +12,10 @@ const BusinessUpdateDialog = ({
   onCancel,
   onSubmit,
   title,
-  ...props
+  initialName,
 }) => {
   const { t } = useTranslation();
-  const [name, setName] = useState(props.name || "");
+  const [name, setName] = useState(initialName || "");
 
   const handleNameChange = (event) => {
     setName(event.target.value);

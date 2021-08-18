@@ -5,6 +5,7 @@
   "businessList": {
     "create": "Create Business",
     "delete": "Delete Business",
+    "edit": "Edit Business",
     "deleteDescription": "This action will delete the business permanently"
   },
   "businessTable": {
