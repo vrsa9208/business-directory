@@ -16,7 +16,9 @@
     "name": "Name"
   },
   "businessDetails": {
-    "create": "Create Person"
+    "create": "Create Person",
+    "delete": "Delete Person",
+    "deleteDescription": "This action will delete the person permanently"
   },
   "personsTable": {
     "name": "Name",

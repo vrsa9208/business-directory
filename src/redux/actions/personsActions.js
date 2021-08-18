@@ -44,3 +44,15 @@ export const createPerson = (businessId, person) => (dispatch) => {
     .catch((error) => dispatch(setPersonsError(error)))
     .then(() => dispatch(setPersonsIsLoading(false)));
 };
+
+export const deletePerson = (businessId, personId) => (dispatch) => {
+  dispatch(setPersonsIsLoading(true));
+
+  getServerClient()
+    .delete(`/business/${businessId}/persons/${personId}`)
+    .then(() => {
+      dispatch(fetchPersons(businessId));
+    })
+    .catch((error) => dispatch(setPersonsError(error)))
+    .then(() => dispatch(setPersonsIsLoading(false)));
+};
