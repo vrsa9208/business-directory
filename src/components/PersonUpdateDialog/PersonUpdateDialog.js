@@ -27,13 +27,21 @@ const PersonUpdateDialog = ({
   const [joinDate, setJoinDate] = useState(initialJoinDate ?? new Date());
 
   const handleOnOkButtonClick = () => {
-    setName("");
-    onSubmit(name);
+    clearFields();
+    onSubmit({ name, email, phone, role, joinDate });
   };
 
   const handleOnCancelButtonClick = () => {
-    setName("");
+    clearFields();
     onCancel();
+  };
+
+  const clearFields = () => {
+    setName("");
+    setEmail("");
+    setPhone("");
+    setRole("");
+    setJoinDate(new Date());
   };
 
   return (

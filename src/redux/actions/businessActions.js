@@ -34,7 +34,7 @@ export const fetchBusiness = () => (dispatch) => {
     .then((response) => {
       dispatch(setBusinessData(response.data.businesses));
     })
-    .catch((error) => dispatch(setBusinessError))
+    .catch((error) => dispatch(setBusinessError(error)))
     .then(() => dispatch(setBusinessIsLoading(false)));
 };
 
@@ -46,7 +46,7 @@ export const createBusiness = (name) => (dispatch) => {
     .then(() => {
       dispatch(fetchBusiness());
     })
-    .catch((error) => dispatch(setBusinessError))
+    .catch((error) => dispatch(setBusinessError(error)))
     .then(() => dispatch(setBusinessIsLoading(false)));
 };
 
@@ -58,7 +58,7 @@ export const deleteBusiness = (businessId) => (dispatch) => {
     .then(() => {
       dispatch(fetchBusiness());
     })
-    .catch((error) => dispatch(setBusinessError))
+    .catch((error) => dispatch(setBusinessError(error)))
     .then(() => dispatch(setBusinessIsLoading(false)));
 };
 
@@ -70,7 +70,7 @@ export const editBusiness = (name, businessId) => (dispatch) => {
     .then(() => {
       dispatch(fetchBusiness());
     })
-    .catch((error) => dispatch(setBusinessError))
+    .catch((error) => dispatch(setBusinessError(error)))
     .then(() => dispatch(setBusinessIsLoading(false)));
 };
 

@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
 import { getBusiness } from "../../redux/actions/businessActions";
-import { fetchPersons } from "../../redux/actions/personsActions";
+import { fetchPersons, createPerson } from "../../redux/actions/personsActions";
+import { useTranslation } from "react-i18next";
 import PersonsTable from "../../components/PersonsTable/PersonsTable";
 import PersonsTableActions from "../../components/PersonsTableActions/PersonsTableActions";
 import PersonUpdateDialog from "../../components/PersonUpdateDialog/PersonUpdateDialog";
@@ -12,14 +13,14 @@ const BusinessDetails = ({
   persons,
   getBusiness,
   fetchPersons,
+  createPerson,
 }) => {
   const { businessId } = useParams();
+  const { t } = useTranslation();
   const [searchFilter, setSearchFilter] = useState("");
 
   const [updateDialogOptions, setUpdateDialogOptions] = useState({
-    title: "Create Person",
-    open: true,
-    onCancel: () => setUpdateDialogOptions({ open: false }),
+    open: false,
   });
 
   useEffect(() => {
@@ -34,6 +35,24 @@ const BusinessDetails = ({
     setSearchFilter(filter);
   };
 
+  const handleCreateButtonClick = () => {
+    setUpdateDialogOptions({
+      open: true,
+      title: t("businessDetails.create"),
+      onCancel: closeUpdateDialog,
+      onSubmit: startPersonCreation,
+    });
+  };
+
+  const startPersonCreation = (person) => {
+    closeUpdateDialog();
+    createPerson(selectedBusiness.businessId, person);
+  };
+
+  const closeUpdateDialog = () => {
+    setUpdateDialogOptions({ open: false });
+  };
+
   const filteredPersons = persons.filter((p) =>
     p.name.toUpperCase().includes(searchFilter.toUpperCase())
   );
@@ -46,6 +65,7 @@ const BusinessDetails = ({
       <PersonsTableActions
         title={selectedBusiness?.name ?? ""}
         onSearchFilterChange={handleSearchFilterChange}
+        onCreateButtonClick={handleCreateButtonClick}
       />
       <PersonsTable data={filteredPersons} />
     </>
@@ -60,6 +80,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
   getBusiness,
   fetchPersons,
+  createPerson,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(BusinessDetails);

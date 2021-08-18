@@ -15,7 +15,7 @@ const BusinessUpdateDialog = ({
   initialName,
 }) => {
   const { t } = useTranslation();
-  const [name, setName] = useState(initialName || "");
+  const [name, setName] = useState(initialName ?? "");
 
   const handleNameChange = (event) => {
     setName(event.target.value);

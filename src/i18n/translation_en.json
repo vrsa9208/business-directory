@@ -15,6 +15,9 @@
   "businessUpdateDialog": {
     "name": "Name"
   },
+  "businessDetails": {
+    "create": "Create Person"
+  },
   "personsTable": {
     "name": "Name",
     "role": "Role",
